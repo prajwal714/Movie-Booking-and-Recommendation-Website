@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+     <head>
+          <title>MBook</title>
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+          
+          <script
+                 src="https://code.jquery.com/jquery-3.3.1.min.js"
+                 integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                 crossorigin="anonymous"></script>
+               <link rel="stylesheet" href="/stylesheets/style.css" type="text/css" media="all">
+    <!-- //Custom-Stylesheet-Links -->
+    <!--fonts -->
+                <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">
+          <!-- <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet"> -->
+          <!-- <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"> -->
+         <!--  <link rel="stylesheet" href="/stylesheets/main.css"> -->
+     </head>
+     <nav class="navbar navbar-inverse" >
+     <div class="container-fluid">
+          <div class="header">
+                 
+      
+          </div>
+          <div class="collapse navbar-collapse">
+
+               <ul class="nav navbar-left navbar-nav">
+                         <li><a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home" style="font-size: 30px; margin-top: 0px;"></span></a></li>
+                    <li> <a href="/"><span style="font-size: 20px;" class="glyphicon glyphicon-info-sign">Home</span></a></li>
+               </ul>
+
+               <ul class="nav navbar-right navbar-nav">
+                    <li><a href="/screening">Screening Movies <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                    <li><a href="/movie">Manage Movies <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                    <li><a href="/screening/new">Manage Screens<span class="glyphicon glyphicon-leaf"></span></a></li>
+                    
+                    <li><a href="#">Admin <span class="glyphicon glyphicon-user"></span></a></li>
+                    
+                   
+                  </ul>  
+               </div>
+               
+          </div>
+    
+</nav>
+     <body onload="onLoaderFunc()">
+          
+
+<div class="container">
+     <div class="jumbotron">
+          <h2>Auditorium Seat Matrix:</h2>
+     </div>
+     <div class="row">
+          <div class="col-md-8">
+            <form method="POST" action="/book_seat/<%=screen._id%>/update">
+                <div class="form-group">
+                    Username:<input type="text" name="username" placeholder="Username" required="true">
+                </div>
+                <div class="form-group">
+                    Email:<input type="Email" name="email" placeholder="email ID" required="true">
+                </div>
+                <div class="form-group">
+                    Contact:<input type="number" name="contact" required="true">
+                </div>
+                <div class="form-group">
+                   <p>Total Amount:<span id="amount"></span>/- INR</p> 
+                </div>
+                
+                
+                
+               <div class="seatStructure txt-center" style="overflow-x:auto;">
+                <table id="seatsBlock">
+                    <p id="notification"></p>
+                    <tr>
+                        <td></td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td></td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>10</td>
+                        <td>11</td>
+                        <td>12</td>
+                    </tr>
+                    <tr>
+                        <td>A</td>
+                       <%screen.seats.forEach(function(seat){var i=0;i=i+1;%>
+
+                       <% if(seat.available==true){%>
+                       <td>
+                            
+                           <input type="checkbox" name="check_list[]" class="seats" value="<%=seat.row%><%=seat.number%>">
+                       </td>
+                       <%} else {%>
+                       <td>
+                           <input type="checkbox"  name="check_list[]" class="seats" value="<%=seat.number%>" disabled="true">
+                       </td>
+                       <%}});%>
+
+
+                    </tr>
+
+                    
+                </table>
+
+                <div class="screen">
+                    <h2 class="wthree">Screen this way</h2>
+                </div>
+                <button type="submit">Confirm Selection</button>
+            </div>
+        </form>
+               
+          </div>                            
+          <div class="col-md-4">
+               
+                    <div class="inputForm">
+                        <h2>fill the required details below and select your seats</h2>
+                        <div >
+                            
+                            <div class="agileits-right">
+                                <label> Number of Seats
+                                    <span>*</span>
+                                </label>
+                                <input type="number" name="seatNum" id="Numseats" required min="1">
+                            </div>
+                        </div>
+                        <button onclick="takeData(); money();">Start Selecting</button>
+                    </div>
+               
+          </div>
+          <div class="displayerBoxes txt-center" style="overflow-x:auto;">
+                <table class="Displaytable w3ls-table" width="100%">
+                    <tr>
+                        <th>Name</th>
+                        <th>Number of Seats</th>
+                        <th>Seats</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <textarea id="nameDisplay"></textarea>
+                        </td>
+                        <td>
+                            <textarea id="NumberDisplay"></textarea>
+                        </td>
+                        <td>
+                            <textarea id="seatsDisplay"></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+     </div>
+</div>
+
+<script src="js/jquery-2.2.3.min.js"></script>
+    <!-- //js -->
+    <!-- script for seat selection -->
+    <script>
+        function money(){
+            var Numseats=$("#Numseats").val();
+            var amt=Numseats*200;
+            document.querySelector("#amount").innerHTML=amt;
+
+        }
+        function onLoaderFunc() {
+            $(".seatStructure *").prop("disabled", true);
+            $(".displayerBoxes *").prop("disabled", true);
+        }
+
+        function takeData() {
+            if (($("#Numseats").val().length == 0)) {
+                alert("Please Enter your Name and Number of Seats");
+            } else {
+                $(".inputForm *").prop("disabled", true);
+                $(".seatStructure *").prop("disabled", false);
+                document.getElementById("notification").innerHTML =
+                    "<b style='margin-bottom:0px;background:#ff9800;letter-spacing:1px;'>Please Select your Seats NOW!</b>";
+            }
+        }
+
+
+        function updateTextArea() {
+
+            if ($("input:checked").length == ($("#Numseats").val())) {
+                $(".seatStructure *").prop("disabled", true);
+
+                var allNameVals = [];
+                var allNumberVals = [];
+                var allSeatsVals = [];
+
+                //Storing in Array
+                allNameVals.push($("#Username").val());
+                allNumberVals.push($("#Numseats").val());
+                $('#seatsBlock :checked').each(function () {
+                    allSeatsVals.push($(this).val());
+                });
+
+                //Displaying 
+                $('#nameDisplay').val(allNameVals);
+                $('#NumberDisplay').val(allNumberVals);
+                $('#seatsDisplay').val(allSeatsVals);
+            } else {
+                alert("Please select " + ($("#Numseats").val()) + " seats")
+            }
+        }
+
+
+        function myFunction() {
+            alert($("input:checked").length);
+        }
+
+        $(":checkbox").click(function () {
+            if ($("input:checked").length == ($("#Numseats").val())) {
+                $(":checkbox").prop('disabled', true);
+                $(':checked').prop('disabled', false);
+            } else {
+                $(":checkbox").prop('disabled', false);
+            }
+        });
+    </script>
+    <!-- //script for seat selection -->
+
+
+ </body>
+ </html>         

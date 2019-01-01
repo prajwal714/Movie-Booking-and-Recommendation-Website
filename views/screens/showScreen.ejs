@@ -1,0 +1,31 @@
+<% include ../header.ejs%>
+<div class="container">
+	<div class="jumbotron">
+		<h1>Following movies are up on screen</h1>
+	</div>
+	<div class="row">
+		<%screen.forEach(function(screen){%>
+		<div class="col-md-4">
+		<div class="thumbnail">
+	
+			<img style="width: 100%" src="<%=screen.movie.img%>">
+			<div class="caption">
+
+				<h3 class="card-title"><%=screen.movie.name%></h3>
+				<h4 class="card-title"><%=screen.screening_start%>00 Hrs</h4>
+				
+				<a class="btn btn-primary" href="/home/<%=screen.movie._id%>">More Info</a>
+				<form method="POST" action="/screening/<%=screen._id %>?_method=DELETE">
+					<button class="btn btn-danger">Delete</button>
+				</form>
+				
+			</div>
+	
+	
+		
+		</div>
+	</div>
+	<%}); %>
+	</div>
+</div>
+<% include ../footer.ejs%>
