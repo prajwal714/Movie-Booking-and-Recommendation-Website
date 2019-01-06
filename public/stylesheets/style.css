@@ -335,6 +335,10 @@ li.smallBox {
     margin-bottom: 1.5em;
 }
 
+{
+
+}
+
 .tw {
     width: 50%;
 }
@@ -346,7 +350,8 @@ label {
 }
 
 input[type="text"],
-input[type="number"] {
+input[type="number"],
+input[type="email"] {
     padding: 1em;
     width: 80%;
     background: transparent;
@@ -378,6 +383,10 @@ ul.seat_w3ls {
     width: 100%;
     background: #ff9800;
     margin: 2em 0;
+}
+.seats {
+    border: 1px solid red;
+    background: yellow;
 }
 
 h2.wthree {

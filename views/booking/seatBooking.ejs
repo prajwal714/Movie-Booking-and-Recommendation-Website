@@ -43,28 +43,52 @@
           </div>
     
 </nav>
-     <body onload="onLoaderFunc()">
+<body onload="onLoaderFunc()">
+  <h1>Movie Seat Selection</h1>
           
 
 <div class="container">
-     <div class="jumbotron">
-          <h2>Auditorium Seat Matrix:</h2>
-     </div>
-     <div class="row">
+    <div class="w3ls-reg">
+      <div class="row">
           <div class="col-md-8">
+
+                  <div style="padding: 20px; margin-bottom: 10px;"class="inputForm">
+                        <h2>fill the required details below and select your seats</h2>
+                        <div >
+                            
+                            <div class="agileits-right">
+                                <label> Number of Seats
+                                    <span>*</span>
+                                </label>
+                                <input type="number" name="seatNum" id="Numseats" required min="1">
+                            </div>
+                        </div>
+                        <button class="btn btn-large btn-primary" onclick="takeData(); money();">Start Selecting</button>
+                    </div>
+
+
             <form method="POST" action="/book_seat/<%=screen._id%>/update">
                 <div class="form-group">
-                    Username:<input type="text" name="username" placeholder="Username" required="true">
+                    <label>Username:</label> <input type="text" name="username" placeholder="Username" required="true">
                 </div>
                 <div class="form-group">
-                    Email:<input type="Email" name="email" placeholder="email ID" required="true">
+                    <label>Email:</label> <input type="Email" name="email" placeholder="email ID" required="true">
                 </div>
                 <div class="form-group">
-                    Contact:<input type="number" name="contact" required="true">
+                  <label>Contact:</label>  <input type="number" name="contact" required="true">
                 </div>
                 <div class="form-group">
-                   <p>Total Amount:<span id="amount"></span>/- INR</p> 
+                   <label><p>Total Amount:<span id="amount"></span>/- INR</p> </label>
                 </div>
+
+
+                <ul class="seat_w3ls">
+                      <li class="smallBox greenBox">Selected Seat</li>
+
+                      <li class="smallBox redBox">Reserved Seat</li>
+
+                      <li class="smallBox emptyBox">Empty Seat</li>
+                </ul>
                 
                 
                 
@@ -78,29 +102,51 @@
                         <td>3</td>
                         <td>4</td>
                         <td>5</td>
-                        <td></td>
+                        
                         <td>6</td>
                         <td>7</td>
                         <td>8</td>
                         <td>9</td>
                         <td>10</td>
-                        <td>11</td>
-                        <td>12</td>
+                       
                     </tr>
                     <tr>
                         <td>A</td>
-                       <%screen.seats.forEach(function(seat){var i=0;i=i+1;%>
+                       <%for(var i=0;i<10;i++){%>
 
-                       <% if(seat.available==true){%>
+                       <% if(screen.seats[i].available==true){%>
                        <td>
-                            
-                           <input type="checkbox" name="check_list[]" class="seats" value="<%=seat.row%><%=seat.number%>">
+
+                           <input type="checkbox" name="check_list[]" class="seats" value="<%=screen.seats[i].id%>">
                        </td>
                        <%} else {%>
-                       <td>
-                           <input type="checkbox"  name="check_list[]" class="seats" value="<%=seat.number%>" disabled="true">
+                       <td style="background-color: red;">
+                           
                        </td>
-                       <%}});%>
+                       <%if(i==4){%>
+                            <td></td>
+                            <%}%>
+                       <%}};%>
+
+
+                    </tr>
+                     <tr>
+                        <td>B</td>
+                       <%for(var i=10;i<20;i++){%>
+
+                       <% if(screen.seats[i].available==true){%>
+                       <td>
+                            
+                           <input type="checkbox" name="check_list[]" class="seats" value="<%=screen.seats[i].id%>">
+                       </td>
+                       <%} else {%>
+                       <td style="background-color: red;">
+                          <input type="checkbox" name="" class="redBox"> 
+                       </td>
+                       <%if(i==14){%>
+                            <td></td>
+                            <%}%>
+                       <%}};%>
 
 
                     </tr>
@@ -114,26 +160,7 @@
                 <button type="submit">Confirm Selection</button>
             </div>
         </form>
-               
-          </div>                            
-          <div class="col-md-4">
-               
-                    <div class="inputForm">
-                        <h2>fill the required details below and select your seats</h2>
-                        <div >
-                            
-                            <div class="agileits-right">
-                                <label> Number of Seats
-                                    <span>*</span>
-                                </label>
-                                <input type="number" name="seatNum" id="Numseats" required min="1">
-                            </div>
-                        </div>
-                        <button onclick="takeData(); money();">Start Selecting</button>
-                    </div>
-               
-          </div>
-          <div class="displayerBoxes txt-center" style="overflow-x:auto;">
+         <div class="displayerBoxes txt-center" style="overflow-x:auto;">
                 <table class="Displaytable w3ls-table" width="100%">
                     <tr>
                         <th>Name</th>
@@ -153,7 +180,16 @@
                     </tr>
                 </table>
             </div>
+               
+        
+               
+                    
+               
+          </div>
+         
      </div>
+    </div>
+     
 </div>
 
 <script src="js/jquery-2.2.3.min.js"></script>

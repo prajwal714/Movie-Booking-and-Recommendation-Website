@@ -12,7 +12,7 @@
 	</div>
 
 	
-	<%movies.forEach(function(movie){%>
+	<%movies.forEach(function(movie){ if(movie.screening==true){%>
 	<div class="col-md-4">
 		<div class="thumbnail">
 	
@@ -29,7 +29,7 @@
 		
 		</div>
 	</div>
-	<%}); %>
+	<%}}); %>
 	</div>
 
 </div>
