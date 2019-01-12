@@ -12,8 +12,7 @@ var screeningSchema=new mongoose.Schema(
 	audi_id: String,
 
 	seats: [{
-	row: String,
-	number: Number,
+	id: String,
 	available: Boolean
 	}]
 	

@@ -1,0 +1,23 @@
+<% include ../header.ejs%>
+<div class="container">
+	<div class="row">
+		<div class="col-md-10">
+			<%ticket.forEach(function(found){%>
+			<div class="row">
+				<div class="col-md-4">
+					<img src="<%=found.screening_id.movie.img%>">
+				</div>
+				<div class="col-md-8">
+					<h2><%=found.screening_id.movie.name%></h3>
+					<h4><strong>Seats:</strong>  <%=found.seats%></h3>
+					<h4><strong>Show Timing:  </strong>  <%=found.screening_id.screening_start%>00 Hrs</h4>
+					<h4>Audi Id: <%=found.screening_id.audi_id%></h4>
+				</div>
+			</div>
+			<%});%>
+		</div>
+	</div>
+</div>
+
+
+<% include ../footer.ejs%>
