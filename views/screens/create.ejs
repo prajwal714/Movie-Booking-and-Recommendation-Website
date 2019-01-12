@@ -17,7 +17,7 @@
 		  <h2><%=audi[i].name%></h2><br>
 		  <%for(var j=0;j<audi[i].showTimes.length;j++){ if(audi[i].showTimes[j].available==true){%>
 
-		 	<%=audi[i].showTimes[j].start%>:<input type="checkbox" name="show_time" value="<%=audi[i]._id+"_"+audi[i].showTimes[j].start%>"><br>
+		 	<%=audi[i].showTimes[j].start%>:<input type="checkbox" name="show_time[]" value="<%=audi[i]._id+"_"+audi[i].showTimes[j].start%>"><br>
 		 	<%}}};%>
 	
 

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MBook</title>
+	 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+          <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+          <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+          <link rel="stylesheet" href="/stylesheets/main.css">
+	<style type="text/css">
+		td,th{
+			margin: 10px;
+			padding: 10px;
+			border: 2px solid white;
+		}
+		#content{
+			color: white;
+		}
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-inverse" >
+     <div class="container-fluid">
+          <div class="header">
+                 
+      
+          </div>
+          <div class="collapse navbar-collapse">
+
+               <ul class="nav navbar-left navbar-nav">
+                         <li><a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home" style="font-size: 30px; margin-top: 0px;"></span></a></li>
+                    <li> <a href="/"><span style="font-size: 20px;" class="glyphicon glyphicon-info-sign">Home</span></a></li>
+               </ul>
+
+               <ul class="nav navbar-right navbar-nav">
+               	<% if(!admin){ %>
+               	 <li><a href="/admin/login">login <span class="glyphicon glyphicon-user"></span></a></li>
+               	 <%} else {%>
+
+
+                    <li><a href="/screening">Screening Movies <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                    <li><a href="/movie">Manage Movies <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                    <li><a href="/screening/new">Manage Screens<span class="glyphicon glyphicon-leaf"></span></a></li>
+                     <li><a href="/admin/logout">Logout<span class="glyphicon glyphicon-leaf"></span></a></li>
+
+                    <%}%>
+                    
+                   
+                    
+                   
+                  </ul>  
+               </div>
+               
+          </div>
+    
+</nav>
+	<div class="container">
+	<div class="jumbotron">
+		<h2>Final Ticket</h2>
+	</div>
+	<div class="row">
+		<div id="content" class="col-lg-12">
+			<table style="padding: 10px; margin: 20px; border: 3px solid white;">
+				<tr>
+					<th>Name</th>
+					<th>Email Id</th>
+					<th>Contact</th>
+					<th>Movie name</th>
+					<th>Movie Timing</th>
+					<th>Seat Booked</th>
+					<th>Audi Name</th>
+				</tr>
+				<tr>
+					<td><%=reservation.username%></td>
+					<td><%=reservation.email%></td>
+					<td><%=reservation.contact%></td>
+					<td><%=reservation.screening_id.movie.name%></td>
+					<td><%=reservation.screening_id.screening_start%>00 Hrs</td>
+					<td><%=reservation.seats%></td>
+					<td><%=reservation.screening_id.audi_id%></td>
+				</tr>
+				
+			</table>
+		</div>
+	</div>
+</div>
+
+
+</body>
+</html>
+
+

@@ -8,7 +8,11 @@ var movieSchema=new mongoose.Schema(
 	director: String,
 	summary: String,
 	release: Number,
-	duration: Number
+	duration: Number,
+	screening: {
+		type: Number,
+		default: 0
+	}
 	
 });
 
