@@ -98,6 +98,18 @@ var data=[
 
 function seed()
 {
+
+	data.forEach(function(movie)
+	{
+		movies.create(movie,function(err,added)
+		{
+			if(err)
+				console.log(err);
+			else
+				console.log(added);
+		});
+
+	});
 	movies.updateMany({},{$set:{"screening":false}},function(err,Movies)
 	{ 
 		

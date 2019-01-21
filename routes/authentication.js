@@ -16,6 +16,7 @@ var express=require("express"),
 //=======================to signup new admin user===================
 		router.get("/admin/signup",function(req,res)
 		{
+
 			res.render("admin/signup");
 		});
 
@@ -33,6 +34,7 @@ var express=require("express"),
 			passport.authenticate("local")(req,res,function()
 			{
 				console.log("Succesfully signed up");
+				req.flash("success","Succesfully Signed Up !!");
 				res.redirect("/index");
 			});
 		})
@@ -41,6 +43,7 @@ var express=require("express"),
 //==================login admin user ===========================	
 	router.get("/admin/login",function(req,res)
 	{
+		
 		res.render("admin/login");
 	});
 	router.post("/admin/login",passport.authenticate("local",
@@ -56,6 +59,7 @@ var express=require("express"),
 	router.get("/admin/logout",function(req,res)
 	{
 		req.logout();
+		req.flash("success","Logged You Out Successfully !");
 		res.redirect("/index");
 	});
 
@@ -64,6 +68,7 @@ function isAdmin(req,res,next)
 	{
 		if(req.isAuthenticated())
 			return next();
+		req.flash("error","You Must be signed in as admin");
 		res.redirect("/admin/login");
 	}
 	module.exports=router;

@@ -38,11 +38,12 @@ router.post("/movie/create",isAdmin,function(req,res)
 	movies.create(newmovie,function(err,movie)
 	{
 		if(err)
-			consol.log(err);
+			console.log(err);
 		else
 		{
 			console.log("new movie created");
-			res.redirect("/");
+			req.flash("success","Successfully Added a New Movie");
+			res.redirect("/movie");
 		}
 	})
 
@@ -57,6 +58,7 @@ router.delete("/movie/:id",isAdmin,function(req,res)
 		else
 		{
 			console.log("movie deleted");
+			req.flash("sucess","Movie Deleted");
 			res.redirect("/movie");
 		}
 	})
@@ -66,6 +68,7 @@ function isAdmin(req,res,next)
 	{
 		if(req.isAuthenticated())
 			return next();
+		req.flash("error","You Must be Signed in as Admin");
 		res.redirect("/admin/login");
 	}
 

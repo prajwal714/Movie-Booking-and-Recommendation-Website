@@ -2,9 +2,13 @@ const express=require("express"),
 	// MongoClient=require("mongodb").MongoClient,
 	app=express(),
 	mongoose=require("mongoose"),
-	 passport=require("passport"),
+	flash=require("connect-flash"),
+	passport=require("passport"),
     LocalStrategy=require("passport-local"),
-    passportLocalMongoose=require("passport-local-mongoose"),
+	passportLocalMongoose=require("passport-local-mongoose"),
+	
+	
+
 	movies=require("./models/movies"),
 	audi=require("./models/audi"),
 	admin=require("./models/admin"),
@@ -12,13 +16,15 @@ const express=require("express"),
 	screening=require("./models/screening"),
 	methodOverride=require("method-override"),
 	seed=require("./seed"),
-	bodyParser=require("body-parser");
 
+
+	bodyParser=require("body-parser");
 	app.use(express.static("public"));
 	app.set("view engine","ejs");
 	app.use(bodyParser.urlencoded({extended:true}));
-	mongoose.connect("mongodb://localhost/bookmyshow");
+	mongoose.connect("mongodb://prajwal:prajwal71421@ds161794.mlab.com:61794/bookmyshow");
 	app.use(methodOverride("_method"));
+	app.use(flash());
 
 	seed();
 
@@ -50,6 +56,8 @@ const express=require("express"),
 			console.log(req.user);
 		  //we pass the currentUser variable to every ejs tenplate which contains the info of current user
 		  res.locals.admin=req.user;
+		  res.locals.error=req.flash("error");
+		  res.locals.success=req.flash("success");
 		  next();
 		});
 
@@ -63,8 +71,7 @@ const express=require("express"),
 	
 	 
 
-
-   app.listen(2000,'127.0.0.1',function()
+   app.listen(process.env.PORT,process.env.IP,function()
 	{
 		console.log("Server started at port 2000");
 	});
