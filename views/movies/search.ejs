@@ -1,0 +1,47 @@
+<% include ../header.ejs %>
+<div class="container">
+	<div class="row">
+	<div class="jumbotron">
+		<h1>Search Results:</h1>
+	</div>
+	<div>
+		<form  method="POST" class="form-inline" action="/movie/omdb">
+			<div class="form-group">
+					<input class="form-group" type="text"  name="title" placeholder="Search-New-Movies-Here" required="true">
+			</div>
+			<div class="form-group">
+				<button class="btn btn-large btn-default" type="submit">Search</button>
+			</div>
+			
+		</form>
+		
+	</div>
+	
+</div>
+	<div class="row">
+		<%search.forEach(function(movie){%>
+		<div class="col-md-4">
+		<div class="thumbnail">
+	
+			<img style="width: 100%" src="<%=movie.Poster%>">
+			<div class="caption">
+
+				<h5 class="card-title"><%=movie.Title%></h5>
+				
+				
+				<form method="POST" action="/create/<%=movie.imdbID%>" >
+                    <button class="btn btn-success ">Add movie</button>
+               </form>   
+			</div>
+	
+	
+		
+		</div>
+	</div>
+	<%}); %>
+	</div>
+	
+	</div>
+
+
+<%include ../footer.ejs%>

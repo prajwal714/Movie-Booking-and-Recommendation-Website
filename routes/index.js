@@ -27,7 +27,11 @@ router.get("/index",function(req,res)
 		movies.findById(req.params.id,function(err,movie)
 		{
 			if(err)
-				console.log(err);
+			{  
+ 				console.log(err);
+ 				req.flash("Movie Dosen't Exist");
+ 				res.redirect("/movie");
+			}
 			else
 				res.render("movie",{movie:movie});
 		});

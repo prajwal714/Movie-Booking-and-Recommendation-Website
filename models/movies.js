@@ -4,7 +4,7 @@ var movieSchema=new mongoose.Schema(
 {
 	name: String,
 	img: String,
-	ratings: Number,
+	ratings: String,
 	director: String,
 	summary: String,
 	release: Number,

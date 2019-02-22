@@ -265,9 +265,9 @@ body {
 }
 
 .w3ls-reg {
-    width: 700px;
+    width: 1000px;
     margin: 0 5vw;
-    background: rgba(128, 128, 128, 0.34);
+    background: rgba(0, 0, 0, 0.70);
     padding: 3.5vw;
     box-sizing: border-box;
     display: flex;

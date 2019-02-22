@@ -2,6 +2,7 @@ var express=require("express"),
 	mongoose=require("mongoose"),
 	router=express.Router(),
 	admin=require("../models/admin"),
+	user=require("../models/user"),
 	passport=require("passport"),
 	localStrategy=require("passport-local");
 
@@ -20,6 +21,7 @@ var express=require("express"),
 			res.render("admin/signup");
 		});
 
+		
 
 	router.post("/admin/signup",function(req,res)
 	{
@@ -29,6 +31,8 @@ var express=require("express"),
 			if(err)
 			{
 				console.log(err);
+
+				req.flash("error",err.message);
 				return res.render("admin/signup");
 			}
 			passport.authenticate("local")(req,res,function()
@@ -39,6 +43,8 @@ var express=require("express"),
 			});
 		})
 	});
+
+	
 
 //==================login admin user ===========================	
 	router.get("/admin/login",function(req,res)
@@ -52,8 +58,10 @@ var express=require("express"),
 			failureRedirect: "/admin/login"
 		}),function(req,res)
 	{
+		
 
 	});
+	
 
 //===============logout route====================
 	router.get("/admin/logout",function(req,res)
@@ -62,13 +70,16 @@ var express=require("express"),
 		req.flash("success","Logged You Out Successfully !");
 		res.redirect("/index");
 	});
+	
 
 
 function isAdmin(req,res,next)
 	{
-		if(req.isAuthenticated())
+		if(req.isAuthenticated()&&req.user.isAdmin==true)
 			return next();
-		req.flash("error","You Must be signed in as admin");
+		req.flash("error","You Must be signed in as Admin");
 		res.redirect("/admin/login");
 	}
+
+
 	module.exports=router;

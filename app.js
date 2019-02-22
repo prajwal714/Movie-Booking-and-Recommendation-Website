@@ -12,6 +12,7 @@ const express=require("express"),
 	movies=require("./models/movies"),
 	audi=require("./models/audi"),
 	admin=require("./models/admin"),
+	user=require("./models/user"),
 	reservation=require("./models/reservation"),
 	screening=require("./models/screening"),
 	methodOverride=require("method-override"),
@@ -23,6 +24,7 @@ const express=require("express"),
 	app.set("view engine","ejs");
 	app.use(bodyParser.urlencoded({extended:true}));
 	mongoose.connect("mongodb://prajwal:prajwal71421@ds161794.mlab.com:61794/bookmyshow");
+	// mongoose.connect("mongodb://localhost/bookmyshow");
 	app.use(methodOverride("_method"));
 	app.use(flash());
 
@@ -36,6 +38,7 @@ const express=require("express"),
 	var bookingRoutes=require("./routes/booking");
 	var authenticationRoutes=require("./routes/authentication");
 	var search=require("./routes/check");
+	var profile=require("./routes/profile");
 
 	app.use(require("express-session")(
 		{ 
@@ -50,6 +53,10 @@ const express=require("express"),
 		passport.use(new LocalStrategy(admin.authenticate()));
 		passport.serializeUser(admin.serializeUser());
 		passport.deserializeUser(admin.deserializeUser());
+
+		// passport.use(new LocalStrategy(user.authenticate()));
+		// passport.serializeUser(user.serializeUser());
+		// passport.deserializeUser(user.deserializeUser());
 
 		 app.use(function(req,res,next)
 		{
@@ -67,6 +74,7 @@ const express=require("express"),
 		app.use(bookingRoutes);
 		app.use(authenticationRoutes);
 		app.use(search);
+		app.use(profile);
 
 	
 	 

@@ -4,6 +4,13 @@
 	<div class="jumbotron">
 		<h1>Movie Management Page</h1>
 	</div>
+	<div>
+		<form class="form-vertical" method="POST" action="/movie/omdb">
+			<input class="form-group" type="text" name="title" placeholder="movie-name" required="true">
+			<button class="btn btn-large btn-default">Search</button>
+		</form>
+		
+	</div>
 	<div class="col-lg-6">
 		<a class="btn btn-large btn-success" href="/movie/create">Add New Movie</a>
 	</div>

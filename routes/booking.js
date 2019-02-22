@@ -11,7 +11,7 @@ var express=require("express"),
 
 //=============================================BOOK movie ticktes================================================
 
-router.get("/book/:id",function(req,res)
+router.get("/book/:id",isUser,function(req,res)
 {
 		movies.findById(req.params.id,function(err,movie)
 			{
@@ -36,14 +36,17 @@ router.get("/book/:id",function(req,res)
 	
 });
 
-router.get("/book_seat/:id",function(req,res)
+router.get("/book_seat/:id",isUser,function(req,res)
 {
+
 	screening.findById(req.params.id,function(err,found)
 	{
+		
 		if(err)
 			console.log(err);
 		else
 		{
+
 			res.render("booking/seatBooking",{screen:found});
 		}
 	});
@@ -109,6 +112,14 @@ router.post("/book_seat/:id/update",function(req,res)
 
 	
 });
- 	
+
+ 	function isUser(req,res,next)
+	{
+		if(req.isAuthenticated())
+			return next();
+		req.flash("error","You Must be signed in as User");
+		res.redirect("/admin/login");
+	}
+
 
  	module.exports=router;
