@@ -1,21 +1,39 @@
 <%include ./header.ejs%>
 <div class=container>
-	<div class=row>
-		<% bookings.forEach(function(booking){%>
-		<div class="col-md-2">
-			<img src="<%=booking.screening_id.movie.img%>">
-		</div>
-		<div class="col-md-9">
-			Name:<p><%=booking.username%></p>
-			Email:<span><%=booking.email%></span>
-			Seats:<span><%=booking.seats%>
-			Timing:<span><%=booking.screening_id.screening_start%></span>
-		</div>
-
-
-		<%});%>
-		
+	<div class="jumbotron">
+		<p>Your Reservations:</p>
 	</div>
+	
+		<%bookings.forEach(function(booking){%>
+		<div class="row">
+		<div class="col-md-3">
+		<div class="thumbnail">
+	
+			<img style="width: 100%" src="<%=booking.screening_id.movie.img%>">
+		</div>
+	</div>
+		<div class="row-col-9">
+			<div class="caption">
+
+				<h5 class="card-title">Username: <%=booking.username%></h5>
+				<h5 class="card-title">Email: <%=booking.email%></h5>
+				<h4 class="card-title">Show Timing: <%=booking.screening_id.screening_start%>00 Hrs</h4>
+				<h4 class="card-title">Seats Booked: <strong><%=booking.seats%></strong></h4>
+				<h4 class="card-title">Audi Id: <strong><%=booking.screening_id.audi_id%></strong></h4>
+				
+				<a class="btn btn-primary" href="/home/<%=booking.screening_id.movie._id%>">More Info About Movie</a>
+				
+					<button class="btn btn-danger">Cancel</button>
+				
+			</div>
+	
+	
+		
+		</div>
+	</div>
+	<%}); %>
+	</div>
+	
 </div>
 
 <%include ./footer.ejs%>

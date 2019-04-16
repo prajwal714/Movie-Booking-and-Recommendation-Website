@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Next</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ 
+</head>
+<body>
+
+	<div class="container">
+		<section>
+			<div class="movie">
+				<img style="width: 300px; height: auto;"class="img-thumbnail img" src="" \>
+				<h1 class="name"></h1> 
+				
+			</div>
+		</section>
+		<section>
+			<button  id="next-button"class="button btn-danger btn">NEXT</button>
+			<button  id="liked" class="button btn-success btn">LIKE</button>
+		</section>
+		<form id="mov" action="/getData" method="POST">
+			<input id="selected_movie" type="text" value="" name="movie">
+			<button id="submit" class="btn btn-success btn-large">SUBMIT</button>
+		</form>
+		
+		
+		
+	</div>
+</body>
+<!-- <script type="text/javascript" src="./next.js"></script> -->
+<script type="text/javascript">
+	var movies=[ {
+	name: "The Dark Knight",
+	img: "https://contentserver.com.au/assets/598411_p173378_p_v8_au.jpg"
+},
+{
+	name: "La La Land",
+	img: "http://barkerhost.com/wp-content/uploads/sites/4/2017/01/8SkwS6x3flGZ1p7ATVtYXmnA44o-3.jpg"
+},
+{
+	name: "Interstellar",
+	img: "https://static1.squarespace.com/static/50d144f6e4b05aff8e5b9c8c/t/54518b79e4b03274c1f8b115/1414630290701/"
+},
+{
+	name: "The Shawshank Redemption",
+	img: "https://files.kstatecollegian.com/2015/06/c4728ae2-cf07-4ae6-af7e-34cf3cb38dbe.jpg"
+}
+];
+
+var numMovies=movies.length;
+var liked_movies=[];
+var liked=document.querySelector("#liked");
+var next=document.querySelector("#next-button");
+var movie_img=document.querySelector(".img");
+var movie_name=document.querySelector(".name");
+var button=document.querySelector(".button");
+var pickedMovie,n=3;
+var selected_num=0;
+
+//to load movies for the first time we reload the page
+generateRandomMovie();
+
+function generateRandomMovie()
+{
+	pickedMovie=movies[Math.floor(Math.random()*movies.length)];
+	movie_img.src=pickedMovie.img;
+	movie_name.textContent=pickedMovie.name;
+}
+
+
+
+//event listerner for liking of a movie
+liked.addEventListener("click",function()
+{
+	//increments the number of liked movies
+	selected_num++;
+	if(selected_num<=n)
+	{
+		liked_movies.push(pickedMovie.name);
+		for(var i = movies.length - 1; i >= 0; i--) {
+		    if(movies[i] === pickedMovie) {
+		       movies.splice(i, 1);
+		    }
+		}
+		console.log(liked_movies);
+		console.log("You cliked liked button");
+		window.alert("You Liked: "+pickedMovie.name);
+		generateRandomMovie();
+	}
+	else
+	{
+		window.alert("You have already liked "+n+" movies");
+	}
+	
+});
+//event listerner for next button to display new movie
+next.addEventListener("click",function()
+{
+
+	generateRandomMovie();
+	console.log("you clicked the next button");
+	
+});
+
+var submit=document.querySelector("#submit");
+
+submit.addEventListener("click",function()
+{
+	// $.ajax({
+    //         type: "POST",
+    //         url: "/getData",
+    //         dataType: "json",
+    //         data: {movie:liked_movies},
+    //         success: function(data) {
+    //         },
+    //         error: function(jqXHR, textStatus, err) {
+    //             alert('text status '+textStatus+', err '+err)
+    //         }
+	//     });
+	document.querySelector("#selected_movie").value=liked_movies[0];
+	document.querySelector("#mov").submit();
+	console.log("You clicked submit button");
+
+})
+
+
+
+</script>
+</html>

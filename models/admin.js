@@ -8,5 +8,5 @@ var mongoose=require("mongoose"),
 		isAdmin: {type: Boolean,default: false}
 	});
 
-	adminSchema.plugin(passportLocalMongoose);
+	\oo
 	module.exports=mongoose.model("Admin",adminSchema);

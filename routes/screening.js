@@ -109,6 +109,7 @@ router.delete("/screening/:id", isAdmin, function(req, res) {
               else console.log(up);
             }
           );
+          
           console.log("screen deleted");
           console.log(audi_id + "," + start_time);
           audi.updateOne(

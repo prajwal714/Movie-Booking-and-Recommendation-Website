@@ -5,18 +5,18 @@ const express=require("express"),
 	flash=require("connect-flash"),
 	passport=require("passport"),
     LocalStrategy=require("passport-local"),
-	passportLocalMongoose=require("passport-local-mongoose"),
+	passportLocalMongoose=require("passport-local-mongoose");
 	
 	
 
-	movies=require("./models/movies"),
-	audi=require("./models/audi"),
-	admin=require("./models/admin"),
-	user=require("./models/user"),
-	reservation=require("./models/reservation"),
-	screening=require("./models/screening"),
-	methodOverride=require("method-override"),
-	seed=require("./seed"),
+	var movies=require("./models/movies"),
+		audi=require("./models/audi"),
+		admin=require("./models/admin"),
+		user=require("./models/user"),
+		reservation=require("./models/reservation"),
+		screening=require("./models/screening"),                                                                         zA
+		methodOverride=require("method-override"),
+		seed=require("./seed"),
 
 
 	bodyParser=require("body-parser");
@@ -24,8 +24,8 @@ const express=require("express"),
 	app.set("view engine","ejs");
 	app.use(bodyParser.urlencoded({extended:true}));
 	// mongoose.connect("mongodb://prajwal:prajwal71421@ds161794.mlab.com:61794/bookmyshow");
-	mongoose.connect("mongodb://prajwal:prajwal71421@ds139534.mlab.com:39534/bookmyshow");
-	// mongoose.connect("mongodb://localhost/bookmyshow");
+	// mongoose.connect("mongodb://prj:prajwal71421@ds347665.mlab.com:47665/bookmyshow");
+	mongoose.connect("mongodb://localhost/bookmyshow");
 	app.use(methodOverride("_method"));
 	app.use(flash());
 
@@ -40,6 +40,7 @@ const express=require("express"),
 	var authenticationRoutes=require("./routes/authentication");
 	var search=require("./routes/check");
 	var profile=require("./routes/profile");
+	var recommendations=require("./routes/recommend");
 
 	app.use(require("express-session")(
 		{ 
@@ -76,11 +77,12 @@ const express=require("express"),
 		app.use(authenticationRoutes);
 		app.use(search);
 		app.use(profile);
+		app.use(recommendations);
 
 	
 	 
 
-   app.listen(process.env.PORT,process.env.IP,function()
+   app.listen(2000,'127.0.0.2',function()
 	{
 		console.log("Server started at port 2000");
 	});

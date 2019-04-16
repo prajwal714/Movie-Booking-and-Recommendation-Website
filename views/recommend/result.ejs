@@ -1,0 +1,21 @@
+<%include ../header1.ejs%>
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>Following Are the recommended Movies for You:</h1>
+    </div>
+    <ul>
+        <!-- <%= movies %> -->
+        <% movies.forEach(function(movie){ %>
+            <li><h3><%=movie%></h3></li>
+
+        
+
+        <% }) %>
+    </ul>
+    
+</div>
+
+
+
+<%include ../footer.ejs%>

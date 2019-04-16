@@ -45,21 +45,22 @@
 
                    
                     <ul class="nav navbar-right navbar-nav">
-                   
+                   <li><a href="/recommendations"><i class="icomoon icon-film"> Recommend</i></a></li>
                    <% if(!admin){%>
                   <li><a href="/admin/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                    <li><a href="/admin/signup"><span class="glyphicon glyphicon-user"> SignUp</a></li>
 
                         
                    <% }else if(admin.isAdmin){%>
+                    <li><a href="/profile">Welcome Admin</a></li>
                     <li><a href="/screening">Screening Movies <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
                     <li><a href="/movie">Manage Movies <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
                     <li><a href="/screening/new">Manage Screens<span class="glyphicon glyphicon-leaf"></span></a></li>
                     <li><a href="/admin/logout">Logout</a></li>
 
                    <%}else{%>
-                    <li><a href="/profile/<%=admin._id%>">Welcome <%=admin.username%></a></li>
-                    <li><a href="/profile/<%=admin._id%>">Profile <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                    <li><a href="/profile%>">Welcome <%=admin.username%></a></li>
+                    <li><a href="/profile%>">Profile <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
                    
                     <li><a href="/admin/logout">Logout</a></li>
 
