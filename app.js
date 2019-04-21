@@ -25,7 +25,8 @@ const express=require("express"),
 	app.use(bodyParser.urlencoded({extended:true}));
 	// mongoose.connect("mongodb://prajwal:prajwal71421@ds161794.mlab.com:61794/bookmyshow");
 	// mongoose.connect("mongodb://prj:prajwal71421@ds347665.mlab.com:47665/bookmyshow");
-	mongoose.connect("mongodb://localhost/bookmyshow");
+	//mongoose.connect("mongodb://localhost/bookmyshow");
+	mongoose.connect("mongodb+srv://prajwal:prajwal71421@cluster0-mbqck.gcp.mongodb.net/mbook");
 	app.use(methodOverride("_method"));
 	app.use(flash());
 
