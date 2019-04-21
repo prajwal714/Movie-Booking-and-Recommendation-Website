@@ -24,8 +24,9 @@ const express=require("express"),
 	app.set("view engine","ejs");
 	app.use(bodyParser.urlencoded({extended:true}));
 	// mongoose.connect("mongodb://prajwal:prajwal71421@ds161794.mlab.com:61794/bookmyshow");
-	mongoose.connect("mongodb://prajwal:prajwal71421@ds139534.mlab.com:39534/bookmyshow");
+	//mongoose.connect("mongodb://prajwal:prajwal71421@ds139534.mlab.com:39534/bookmyshow");
 	// mongoose.connect("mongodb://localhost/bookmyshow");
+	mongoose.connect("mongodb+srv://prajwal:prajwal71421@cluster0-mbqck.gcp.mongodb.net/mbook");
 	app.use(methodOverride("_method"));
 	app.use(flash());
 
