@@ -83,7 +83,7 @@ const express=require("express"),
 	
 	 
 
-   app.listen(2000,'127.0.0.2',function()
+   app.listen(process.env.PORT,process.env.IP,function()
 	{
-		console.log("Server started at port 2000");
+		console.log("Server started at port "+process.env.PORT);
 	});
