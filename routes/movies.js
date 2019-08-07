@@ -72,7 +72,9 @@ router.delete("/movie/:id",isAdmin,function(req,res)
 });
 //=====================adding movie using omdb api================
 router.post("/movie/omdb",function(req,res)
-{
+{	
+	return res.json(400).send({error:"The service is unavailable for now!! sorry"});
+	
 	var params={
 		apiKey: "facfe877",
 		query: req.body.title
