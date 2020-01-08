@@ -100,24 +100,24 @@ var data=[
 function seed()
 {
 	
-	// movies.remove({},function(err,res)
-	// {
-	// 	if(err)
-	// 	console.log(err)
-	// 	else
-	// 	console.log(res);
-	// });
-	// data.forEach(function(movie)
-	// {
-	// 	movies.create(movie,function(err,added)
-	// 	{
-	// 		if(err)
-	// 			console.log(err);
-	// 		else
-	// 			console.log(added);
-	// 	});
+	movies.remove({},function(err,res)
+	{
+		if(err)
+		console.log(err)
+		else
+		console.log(res);
+	});
+	data.forEach(function(movie)
+	{
+		movies.create(movie,function(err,added)
+		{
+			if(err)
+				console.log(err);
+			else
+				console.log(added);
+		});
 
-	// });
+	});
 	movies.updateMany({},{$set:{"screening":false}},function(err,Movies)
 	{ 
 		
