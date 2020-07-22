@@ -1,6 +1,6 @@
 
 **Movie Booking and Recommendation Website**
-[![Movie Booking Website](http://i.imgur.com/sample/movie_booking.gif)]()
+[![Movie Booking Website](/sample/movie_booking.gif)]()
 
 # Movie-Booking-Website
 Movie Booking website using Nodejs, Express framework and MongoDB Atlas Cloud Database. EJS templates on frontend with HTML, Bootstrap and CSS. I did this project in my Sophmore Year as a part of my Winter project Competition organized by Developers Club of IIIT for which I won the first prize too.
