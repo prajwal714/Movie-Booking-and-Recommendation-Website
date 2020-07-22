@@ -1,5 +1,5 @@
 
-[![Movie Booking Website](http://i.imgur.com/sample/movie_booking.gif)]()
+[![Movie Booking Website](/sample/movie_booking.gif)]()
 
 # Movie-Booking-Website
 Movie Booking website using Nodejs, Express framework and MongoDB. EJS templates on frontend with HTML, Bootstrap and CSS.
