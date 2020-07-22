@@ -1,27 +1,45 @@
+
+[![Movie Booking Website](http://i.imgur.com/sample/movie_booking.gif)]()
+
 # Movie-Booking-Website
+Movie Booking website using Nodejs, Express framework and MongoDB. EJS templates on frontend with HTML, Bootstrap and CSS.
 
+## Access
+Their are two access-views of the website :
+- User View
 
-This is a Movie Booking website using Nodejs. express and MongoDB.
-Their are 2 views of the website :
-1> User View
-
-  In this you can view the screening movies, see more info about them, book them based on available show timings.
-  Choose your desired available seat and finally get a ticket for your movie.
-  Also you can check status of your ticket using the search option which requires your registered mobile number while booking the ticket.
+  Explore and Book Movies. View History, generate Invoice. 
   
-  
- 2> Admin View
+- Admin View
     This view is protected by authentication using passport.js
     
-    username: Prajwal
-    password: 12345
+    username: admin
+    password: admin
     
     In this view their are multiple admin features :
     
-    1. Screening Movies: In this you can view or delete all the currently screening movies in the movie theatres.
+   >Screening Movies: View, Edit and Delete currently screening movies.
     
-    2. Manange Screen: In this you can map the movies to the audi along with the specific show timing(s). Show timings are available based
-                        on your previously left time slots. I have used 4 time slots of 9,12,15 and 1800 Hrs.
+   >Manange Screen: Assign Audi to movies, based on available slots.
     
-    3. Manage movies: In this you can add or delete the movies which you might want to add to the screens.
+   >Manage movies: Add new movies, update existing.
+
+## Demo
+[![Movie Booking Website](/sample/images/main_page.png)]()
+[![Movie Booking Website](/sample/images/booking_page.png)]()
+[![Movie Booking Website](/sample/images/movies_page.png)]()
+[![Movie Booking Website](/sample/images/admin_page.png)]()
+
+
+## Installation
+
+
+### Clone 
+- Clone the repository to your local machine using git clone 
+- Change the Mongodb credentials in the code
+- `npm install`
+
+## About me
+I am Computer science Undergrad from IIIT Gwalior. Former intern at GoJek, passionate dev and tech enthusiast. Do connect with me.
+
     
