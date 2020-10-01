@@ -1,9 +1,17 @@
 
+
 **Movie Booking and Recommendation Website**
 [![Movie Booking Website](/sample/movie_booking.gif)]()
 
-# Movie-Booking-Website
-Movie Booking website using Nodejs, Express framework and MongoDB Atlas Cloud Database. EJS templates on frontend with HTML, Bootstrap and CSS. I did this project in my Sophmore Year as a part of my Winter project Competition organized by Developers Club of IIIT for which I won the first prize too.
+# Movie-Booking-WebApp
+I built this web application in my sophomore year under Winter Project competition organized by AASF (programming club of the institute). At the end of the competition I secured rank 1 out of the 50+ participants.
+## Technology Stack
+- NodeJS
+- Express
+- MongoDB Atlas
+- EJS templating engine
+- Bootstrap and CSS
+
 
 ## Access
 Their are two access-views of the website :
