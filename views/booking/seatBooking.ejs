@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+     <head>
+          <title>MBook</title>
+           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+          <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+          <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+          
+          <script
+                 src="https://code.jquery.com/jquery-3.3.1.min.js"
+                 integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                 crossorigin="anonymous"></script>
+               <link rel="stylesheet" href="/stylesheets/style.css" type="text/css" media="all">
+   
+                <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">
+          
+     </head>
+     <nav class="navbar navbar-inverse" >
+     <div class="container-fluid">
+          <div class="navbar-header">
+             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                 <span class="icon-bar"></span>
+                 <span class="icon-bar"></span>
+                 <span class="icon-bar"></span> 
+               </button>
+               <a class="navbar-brand" href="/index">MBook</a>
+                          
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+
+               <ul class="nav navbar-left navbar-nav">
+                         <li><a class="navbar-brand" href="/"><i class="icomoon icon-film"></i></a></li>
+                    <li> <a href="/index">Movies</a></li>
+               </ul>
+
+               <ul class="nav navbar-right navbar-nav">
+                <% if(!admin){%>
+                  <li><a href="/admin/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                   <li><a href="/admin/signup"><span class="glyphicon glyphicon-user"> SignUp</a></li>
+
+                        
+                   <% }else if(admin.isAdmin){%>
+                    <li><a href="/screening">Screening Movies <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                    <li><a href="/movie">Manage Movies <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                    <li><a href="/screening/new">Manage Screens<span class="glyphicon glyphicon-leaf"></span></a></li>
+                    <li><a href="/admin/logout">Logout</a></li>
+
+                   <%}else{%>
+                    <li><a href="/profile/<%=admin._id%>">Welcome <%=admin.username%></a></li>
+                    <li><a href="/profile/<%=admin._id%>44e">Profile <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                   
+                    <li><a href="/admin/logout">Logout</a></li>
+
+                   <%};%>
+                    
+                  </ul>  
+               </div>
+               
+          </div>
+    
+</nav>
+<body onload="onLoaderFunc()">
+  <h1>Movie Seat Selection</h1>
+          
+
+<div class="container">
+    <div class="w3ls-reg">
+      <div class="row" >
+          <div class="col-md-5" style="padding-top: 100px;">
+
+                  <div style="padding: 20px; margin-bottom: 10px;"class="inputForm">
+                        <h2>fill the required details below and select your seats</h2>
+                        <div >
+                            
+                            <div class="agileits-right">
+                                <label> Number of Seats
+                                    <span>*</span>
+                                </label>
+                                
+                                <input type="number" name="seatNum" id="Numseats" required min="1" placeholder="1-2-3-4" max="20">
+                            </div>
+                        </div>
+                        <button class="btn btn-large btn-primary" onclick="takeData(); money();">Start Selecting</button>
+                    </div>
+                  </div>
+
+            <div class="col-md-7">
+            <form method="POST" action="/book_seat/<%=screen._id%>/update">
+                <div class="form-group">
+                    <label>Username:</label> <input type="text" value="<%=admin.username%>"name="username" placeholder="Username" required="true">
+                </div>
+                <div class="form-group">
+                    <label>Email:</label> <input type="Email" name="email" placeholder="Email ID" required="true">
+                </div>
+                <div class="form-group">
+                  <label>Contact:</label>  <input type="number" name="contact" required="true" placeholder="10 Digit Number">
+                </div>
+                <div class="form-group">
+                   <label><p>Total Amount:<span id="amount"></span>/- INR</p> </label>
+                </div>
+
+
+                <ul class="seat_w3ls">
+                      <li class="smallBox greenBox">Selected Seat</li>
+
+                     
+
+                      <li class="smallBox emptyBox">Empty Seat</li>
+                </ul>
+                
+                
+                
+               <div class="seatStructure txt-center" style="overflow-x:auto;">
+                <table id="seatsBlock">
+                    <p id="notification"></p>
+                    <tr>
+                        <td></td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td></td>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>10</td>
+                       
+                    </tr>
+                    <tr>
+                        <td>A</td>
+                       <%for(var i=0;i<10;i++){%>
+
+                       <% if(screen.seats[i].available==true){%>
+                       <td>
+
+                           <input type="checkbox" name="check_list[]" class="seats" required="true" value="<%=screen.seats[i].id%>">
+                       </td>
+                       <%} else {%>
+                       <td>
+                           
+                       </td>
+                       <%}if(i==4){%>
+                            <td></td>
+                            <%}%>
+                       <%};%>
+
+
+                    </tr>
+                     <tr>
+                        <td>B</td>
+                       <%for(var i=10;i<20;i++){%>
+
+                       <% if(screen.seats[i].available==true){%>
+                       <td>
+                            
+                           <input type="checkbox" name="check_list[]" class="seats" required="true" value="<%=screen.seats[i].id%>">
+                       </td>
+                       <%} else {%>
+                       <td>
+                         
+                       </td>
+                       <%} if(i==14){%>
+                            <td class="seatGap"></td>
+                            <%}%>
+                       <%};%>
+
+
+                    </tr>
+
+                    
+                </table>
+
+                <div class="screen">
+                    <h2 class="wthree">Screen this way</h2>
+                </div>
+                <button class="btn btn-large btn-success" type="submit">Confirm Selection</button>
+            </div>
+        </form>
+           </div>
+         
+     </div>
+    </div>
+     
+</div>
+
+<script src="js/jquery-2.2.3.min.js"></script>
+    <!-- //js -->
+    <!-- script for seat selection -->
+    <script>
+        function money(){
+            var Numseats=$("#Numseats").val();
+            var amt=Numseats*200;
+            document.querySelector("#amount").innerHTML=amt;
+
+        }
+
+        function onLoaderFunc() {
+            $(".seatStructure *").prop("disabled", true);
+            $(".displayerBoxes *").prop("disabled", true);
+        }
+
+        function takeData() {
+
+
+            if (($("#Numseats").val().length == 0)) {
+                alert("Please Enter your Name and Number of Seats");
+            } else {
+                $(".inputForm *").prop("disabled", true);
+                $(".seatStructure *").prop("disabled", false);
+                $(".disabled_seats").prop("disabled",true);
+
+                document.getElementById("notification").innerHTML =
+                    "<b style='margin-bottom:0px;background:#ff9800;letter-spacing:1px;'>Please Select your Seats NOW!</b>";
+            }
+        }
+
+
+        function updateTextArea() {
+
+            if ($("input:checked").length == ($("#Numseats").val())) {
+                $(".seatStructure *").prop("disabled", true);
+
+                var allNameVals = [];
+                var allNumberVals = [];
+                var allSeatsVals = [];
+
+                //Storing in Array
+                allNameVals.push($("#Username").val());
+                allNumberVals.push($("#Numseats").val());
+                $('#seatsBlock :checked').each(function () {
+                    allSeatsVals.push($(this).val());
+                });
+
+                //Displaying 
+                $('#nameDisplay').val(allNameVals);
+                $('#NumberDisplay').val(allNumberVals);
+                $('#seatsDisplay').val(allSeatsVals);
+            } else {
+                alert("Please select " + ($("#Numseats").val()) + " seats")
+            }
+        }
+
+
+        function myFunction() {
+            alert($("input:checked").length);
+        }
+
+        $(":checkbox").click(function () {
+            if ($("input:checked").length == ($("#Numseats").val())) {
+                $(":checkbox").prop('disabled', true);
+                $(':checked').prop('disabled', false);
+            } else {
+                $(":checkbox").prop('disabled', false);
+            }
+        });
+    </script>
+    <!-- //script for seat selection -->
+
+
+ </body>
+ </html>         

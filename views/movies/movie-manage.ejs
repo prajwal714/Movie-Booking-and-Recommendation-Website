@@ -1,0 +1,44 @@
+<% include ../header.ejs %>
+<div class="container">
+	<div class="row">
+	<div class="jumbotron">
+		<h1>Movie Management Page</h1>
+	</div>
+	<div>
+		<form class="form-vertical" method="POST" action="/movie/omdb">
+			<input class="form-group" type="text" name="title" placeholder="movie-name" required="true">
+			<button class="btn btn-large btn-default">Search</button>
+		</form>
+		
+	</div>
+	<div class="col-lg-6">
+		<a class="btn btn-large btn-success" href="/movie/create">Add New Movie</a>
+	</div>
+</div>
+	<div class="row">
+		<%movies.forEach(function(movie){%>
+		<div class="col-md-4">
+		<div class="thumbnail">
+	
+			<img style="width: 100%" src="<%=movie.img%>">
+			<div class="caption">
+
+				<h5 class="card-title"><%=movie.name%></h5>
+				
+				<a class="btn btn-primary" href="/home/<%=movie._id%>">Edit</a>
+				<form id="delete" action="/movie/<%=movie._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger ">Delete</button>
+               </form>   
+			</div>
+	
+	
+		
+		</div>
+	</div>
+	<%}); %>
+	</div>
+	
+	</div>
+
+
+<%include ../footer.ejs%>

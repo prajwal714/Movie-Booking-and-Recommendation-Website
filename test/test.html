@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+</head>
+<script type="text/javascript">
+	var V=[];
+
+	function f1()
+	{
+		var len=document.form2.value.length;
+		for(var i=0;i<len;i++)
+		{
+			V.push(document.form2.value[i])
+		}
+		console.log(V);
+		return V;
+	}
+
+
+	
+	
+	
+</script>
+<body>
+
+	<h1>This page is for testing multiple submit values</h1>
+<form name="form1" onclick="setVal()">
+	<select>
+		<option  name="value" value="1">1</option>
+		<option name="value"  value="2">2</option>
+		<option  name="value" value="3">3</option>
+	</select>
+</form>
+	
+	<form name="form2" onsubmit="f1()">
+		<input type="checkbox" name="value" value="v1" disabled="true">
+		<input type="checkbox" name="value" value="v2">
+		<input type="checkbox" name="value" value="v3">
+		<button>Submit</button>
+	</form>
+
+</body>
+</html>

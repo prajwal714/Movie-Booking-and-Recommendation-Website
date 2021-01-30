@@ -1,0 +1,27 @@
+body{
+	background-image: url(background.jpg);
+	
+
+
+}
+.container{
+	background: rgba(0,0,0,0.8);
+}
+.row{
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+}
+
+.thumbnail{
+
+	background-color: black;
+}
+
+.thumbnail .caption{
+	color: white;
+
+}
+#content{
+	color: white;
+}

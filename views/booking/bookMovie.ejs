@@ -1,0 +1,30 @@
+<%include ../header1.ejs%>
+<div class="container">
+	<div class="jumbotron">
+		<h2>Book Movies fast and easy</h2>
+	</div>
+	<div class="row" >
+		<div class="col-md-4" id="content">
+			<img src="<%=movie.img%>">
+			<h2><%=movie.name%></h2>
+		
+				<p>Ratings: <%=movie.ratings%></p>
+				<p>Director: <%=movie.director%></p>
+				<p>Release: <%=movie.release%></p>
+				<h3>Summary: </h3>
+				<p><%=movie.summary%></p>
+		</div>
+		<div class="col-md-8">
+			<%screen.forEach(function(screen){%>
+				<a class="btn btn-primary btn-large" href="/book_seat/<%=screen._id%>"><%=screen.screening_start%>00 Hrs</a>
+
+				
+
+
+			<%});%>
+		</div>
+	</div>
+</div>
+
+
+<%include ../footer.ejs%>

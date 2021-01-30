@@ -1,0 +1,26 @@
+<%include header1.ejs%>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="jumbotron">
+					<h1>More Info About Movies</h1>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<img src="<%=movie.img%>">
+			</div>
+		
+		<div id="content" class="col-md-8">
+			<h2><%=movie.name%></h2>
+		
+				<p>Ratings: <%=movie.ratings%></p>
+				<p>Director: <%=movie.director%></p>
+				<p>Release: <%=movie.release%></p>
+				<h3>Summary: </h3>
+				<p><%=movie.summary%></p>
+				<a href="/book/<%=movie._id%>" class="btn btn-success btn-large">Book Tickets</a>
+		</div>
+	</div>
+</div>
+		
+<%include footer.ejs%>

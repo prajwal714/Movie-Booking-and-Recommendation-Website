@@ -1,0 +1,31 @@
+<%include ../header.ejs%>
+<div class="container">
+	<div class="jumbotron">
+		<h1>Welcome to BookmyShow page</h1>
+		<h2>Add the screens to the below movies</h2>
+	</div>
+	<form method="POST" action="/screening/new" style="text-align: center;">
+	Choose Movie: 
+	<select class="form-control" name="movie_name">
+		<% for(var i=0;i<movies.length;i++){%>
+		  <option><%=movies[i].name%></option>
+		  <%};%>
+	</select><br>
+	<h1>Choose Audi and time slot:</h1>
+	
+		<% for(var i=0;i<audi.length;i++){%>
+		  <h2><%=audi[i].name%></h2><br>
+		  <%for(var j=0;j<audi[i].showTimes.length;j++){ if(audi[i].showTimes[j].available==true){%>
+
+		 	<%=audi[i].showTimes[j].start%>:<input type="checkbox" name="show_time[]" value="<%=audi[i]._id+"_"+audi[i].showTimes[j].start%>"><br>
+		 	<%}}};%>
+	
+
+	<br><button class="btn btn-success btn-large">Submit</button>
+	
+</form>
+</div>
+
+
+
+<%include ../footer.ejs%>

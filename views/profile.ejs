@@ -1,0 +1,21 @@
+<%include ./header.ejs%>
+<div class=container>
+	<div class=row>
+		<% bookings.forEach(function(booking){%>
+		<div class="col-md-2">
+			<img src="<%=booking.screening_id.movie.img%>">
+		</div>
+		<div class="col-md-9">
+			Name:<p><%=booking.username%></p>
+			Email:<span><%=booking.email%></span>
+			Seats:<span><%=booking.seats%>
+			Timing:<span><%=booking.screening_id.screening_start%></span>
+		</div>
+
+
+		<%});%>
+		
+	</div>
+</div>
+
+<%include ./footer.ejs%>

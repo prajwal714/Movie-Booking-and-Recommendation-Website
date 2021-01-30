@@ -1,0 +1,167 @@
+
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html>
+<head>
+     <title>Login Page</title>
+   <!--Made with love by Mutiullah Samim -->
+   
+     <!--Bootsrap 4 CDN-->
+     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> -->
+     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <script="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+          <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+          <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <!--Fontawesome CDN-->
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+
+     <!--Custom styles-->
+     <link rel="stylesheet" type="text/css" href="/stylesheets/login.css">
+     <style type="text/css">
+          .login-form {
+               width: 340px;
+          margin: 50px auto;
+          }
+         .login-form form {
+          margin-bottom: 15px;
+             background: #f7f7f7;
+             box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+             padding: 30px;
+         }
+         .login-form h2 {
+             margin: 0 0 15px;
+         }
+         .form-control, .btn {
+             min-height: 38px;
+             border-radius: 2px;
+         }
+         .btn {        
+             font-size: 15px;
+             font-weight: bold;
+         }
+     </style>
+
+
+</head>
+<body>
+	
+  <nav class="navbar navbar-inverse" >
+
+     <div class="container-fluid">
+          <div class="header">
+                 
+      
+          </div>
+          <div class="collapse navbar-collapse">
+
+               <ul class="nav navbar-left navbar-nav">
+                         <li><a class="navbar-brand" href="/"><i class="icomoon icon-film"></i></a></li>
+                    <li> <a href="/index">Book Movies</a></li>
+                    <div class=" pull-right">
+                         
+                         </div>
+                    
+               </ul>
+               <ul class="nav navbar-right navbar-nav">
+                   
+                   <% if(!admin){%>
+                   <li><a href="/admin/login">Login</a></li>
+                   <li><a href="/admin/signup">SignUp</a></li>
+
+                        
+                   <% }else if(admin.isAdmin){%>
+                    <li><a href="/screening">Screening Movies <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                    <li><a href="/movie">Manage Movies <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                    <li><a href="/screening/new">Manage Screens<span class="glyphicon glyphicon-leaf"></span></a></li>
+                    <li><a href="/admin/logout">Logout</a></li>
+
+                   <%}else{%>
+                    <li><a href="/profile">Welcome <%=admin.username%></a></li>
+                    <li><a href="/screening">Profile <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                   
+                    <li><a href="/admin/logout">Logout</a></li>
+
+                   <%};%>
+                    
+                    
+                    
+                   
+                  </ul>  
+               </div>
+               
+          </div>
+    
+     </nav>
+             <div class="container">
+                <% if(error && error.length>0){ %>
+                <div class="alert alert-danger" role="alert">
+                     <%=error%>
+                </div>
+                <% } %>
+           
+                <% if(success && success.length>0){ %>
+                <div class="alert alert-success" role="alert">
+                          <%=success%>
+                     </div>
+                <%}%>
+           
+           
+               <div class="login-form">
+                   <form method="POST" action="/admin/login">
+                       <h2 class="text-center">Log in</h2>       
+                       <div class="form-group">
+                           <input id="signinId" type="text" class="form-control" placeholder="Username" name="username" required="required">
+                       </div>
+                       <div class="form-group">
+                           <input id="signinPwd" type="password" class="form-control" placeholder="Password" name="password"required="required">
+                       </div>
+                       <div class="form-group">
+                           <button type="submit" class="btn btn-primary btn-block">Log in</button>
+                       </div>
+                       <div class="clearfix">
+                           <label class="pull-left checkbox-inline"><input id="rememberChkBox" type="checkbox"> Remember me</label>
+                           
+                       </div> 
+                       <p class="text-center"><a href="/admin/signup">Create an Account</a></p> 
+                       <p class="text-center"><a href="/index">Go Back</a></p>      
+                   </form>
+
+                   
+               </div>
+             </div>
+               <script type="text/javascript">
+                    $(function () {
+
+                        if (localStorage.chkbox && localStorage.chkbox != '') {
+                            $('#rememberChkBox').attr('checked', 'checked');
+                            $('#signinId').val(localStorage.username);
+                            $('#signinPwd').val(localStorage.pass);
+                        } else {
+                            $('#rememberChkBox').removeAttr('checked');
+                            $('#signinId').val('');
+                            $('#signinPwd').val('');
+                        }
+
+                        $('#rememberChkBox').click(function () {
+                         console.log("clicked");
+
+                            if ($('#rememberChkBox').is(':checked')) {
+                                // save username and password
+                                localStorage.username = $('#signinId').val();
+                                localStorage.pass = $('#signinPwd').val();
+                                localStorage.chkbox = $('#rememberChkBox').val();
+                            } else {
+                                localStorage.username = '';
+                                localStorage.pass = '';
+                                localStorage.chkbox = '';
+                            }
+                        });
+                    });
+               </script>
+               
+<%include ../footer%>

@@ -1,0 +1,135 @@
+ul.seat_w3ls {
+    margin: 1em 0;
+}
+
+.screen {
+    width: 100%;
+    background: #ff9800;
+    margin: 2em 0;
+}
+
+h2.wthree {
+    padding: 0.8em;
+    font-size: 1.2em;
+    color: #000;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 7px;
+    word-spacing: 10px;
+}
+
+.smallBox::before {
+    content: "";
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.greenBox::before {
+    content: "";
+    background: Green;
+}
+
+.redBox::before {
+    content: "";
+    background: Red;
+}
+
+.emptyBox::before {
+    content: "";
+    box-shadow: inset 0px 2px 3px 0px rgb(255, 152, 0), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+    -moz-box-shadow: inset 0px 2px 3px 0px rgb(255, 152, 0), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+    -webkit-box-shadow: inset 0px 2px 3px 0px rgb(255, 152, 0), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+    background-color: #fff;
+}
+
+.seats {
+    border: 1px solid red;
+    background: yellow;
+}
+
+.seatGap {
+    width: 40px;
+}
+
+.seatVGap {
+    height: 40px;
+}
+
+table {
+    text-align: center;
+}
+
+.Displaytable {
+    text-align: center;
+}
+
+.Displaytable td,
+.Displaytable th {
+    width: 100%;
+    padding: 7px 10px;
+    color: #000;
+    font-weight: 600;
+}
+
+table.Displaytable tr {
+    background: #fff;
+    color: #fff;
+}
+
+textarea {
+    border: none;
+    background: transparent;
+    resize: none;
+}
+
+input[type=checkbox] {
+    width: 13px;
+    margin-right: 14px;
+    cursor: pointer;
+}
+          table{
+               margin: 10px;
+          }
+          td{
+               margin: 10px;
+               border: 2px solid black;
+               padding: 5px;
+          }
+          .section{
+               margin: 20px;
+               padding-bottom: 50px;
+          }
+          .screen{
+               border: 3px solid black;
+               width: 300px;
+               text-align: center;
+               margin-left: 100px ;
+          }
+          td:hover{
+               background-color: gray;
+          }
+          input[type=checkbox]:before {
+    content: "";
+    width: 25px;
+    height: 18px;
+    border-radius: 5px;
+    /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+    -webkit-border-radius: 5px;
+    /* Firefox 1-3.6 */
+    -moz-border-radius: 5px;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    border: 3px solid #ff9800;
+    box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+    -moz-box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+    -webkit-box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+    background-color: #ffffff;
+}
+
+input[type=checkbox]:checked:before {
+    background-color: Green;
+    font-size: 15px;
+}

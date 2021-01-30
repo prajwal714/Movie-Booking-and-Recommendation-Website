@@ -1,0 +1,27 @@
+<h1>Add the following movie to screen</h1>
+
+<h2><%=movie.name%></h2>
+<img src="<%=movie.img%>">
+
+<form style="text-align: center; margin: 0px auto; width: 250px;" action="/add_screening" method="POST">
+	<!-- <input type="text" name="name" placeholder="name" value="<%=movie.name%>">
+	<input type="text" name="img" placeholder="img" value="<%=movie.img%>">
+	<input type="text" name="director" placeholder="director" value="<%=movie.director%>">
+	<textarea rows="10" cols="20" name="summary"><%=movie.summary%></textarea>
+	<input type="text" name="release" placeholder="release" value="<%=movie.release%>">
+	<input type="text" name="duration" placeholder="duration" value="<%=movie.duration%>"> 
+	<input type="text" name="ratings" placeholder="ratings" value="<%=movie.ratings%>"> -->
+	<fieldset>
+          <legend>Choose Audi Number</legend>
+          <p>
+             <label>Auditorium Number</label>
+             <select id = "myList">
+               <option name="Audi"value = "Audi 1">Audi 1</option>
+               <option name="Audi" value = "Audi 2">Audi 2</option>
+              
+             </select>
+          </p>
+       </fieldset>
+       <input type="text" name="begin" placeholder="show_begin">
+	<button>Submit</button>
+</form>

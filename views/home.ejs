@@ -1,0 +1,48 @@
+<%include header1.ejs%>
+<div class="container">
+	<div class="row">
+	<div class="col-lg-12">
+		<div class="jumbotron">
+			<h1>Welcome to MBook page</h1>
+			<div>
+				<h2>We provide fastest and easiest movie booking</h2>
+
+			</div>
+		</div>
+
+	</div>
+
+
+	<div class="back">
+				<%movies.forEach(function(movie){ if(movie.screening>0){%>
+			<div class="col-md-4">
+				<div class="thumbnail">
+			
+					<img style="width: 100%" src="<%=movie.img%>">
+					<div class="caption">
+
+						<h5 class="card-title"><%=movie.name%></h5>
+						
+						<a class="btn btn-primary" href="/home/<%=movie._id%>">More Info</a>
+						<a class="btn btn-success" href="/book/<%=movie._id%>">Book Now</a>
+					</div>
+			
+			
+				
+				</div>
+			</div>
+			<%}}); %>
+				
+	</div>
+	
+	</div>
+
+</div>
+
+	
+
+		
+	
+
+
+<%include footer.ejs%>

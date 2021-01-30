@@ -1,0 +1,128 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+     <title>Sign Up</title>
+  
+     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <script="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+          <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+          <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <!--Fontawesome CDN-->
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+
+     <!--Custom styles-->
+     <link rel="stylesheet" type="text/css" href="/stylesheets/login.css">
+     <style type="text/css">
+          .login-form {
+               width: 340px;
+          margin: 50px auto;
+          }
+         .login-form form {
+          margin-bottom: 15px;
+             background: #f7f7f7;
+             box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+             padding: 30px;
+         }
+         .login-form h2 {
+             margin: 0 0 15px;
+         }
+         .form-control, .btn {
+             min-height: 38px;
+             border-radius: 2px;
+         }
+         .btn {        
+             font-size: 15px;
+             font-weight: bold;
+         }
+     </style>
+
+
+</head>
+<body>
+     
+  <nav class="navbar navbar-inverse" >
+
+     <div class="container-fluid">
+          <div class="header">
+                 
+      
+          </div>
+          <div class="collapse navbar-collapse">
+
+               <ul class="nav navbar-left navbar-nav">
+                         <li><a class="navbar-brand" href="/"><i class="icomoon icon-film"></i></a></li>
+                    <li> <a href="/index">Book Movies</a></li>
+                    <div class=" pull-right">
+                         
+                         </div>
+                    
+               </ul>
+               <ul class="nav navbar-right navbar-nav">
+                   
+                   <% if(!admin){%>
+                   <li><a href="/admin/login">Login</a></li>
+                   <li><a href="/admin/signup">SignUp</a></li>
+
+                        
+                   <% }else if(admin.isAdmin){%>
+                    <li><a href="/screening">Screening Movies <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                    <li><a href="/movie">Manage Movies <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                    <li><a href="/screening/new">Manage Screens<span class="glyphicon glyphicon-leaf"></span></a></li>
+                    <li><a href="/admin/logout">Logout</a></li>
+
+                   <%}else{%>
+                    <li><a href="/profile">Welcome <%=admin.username%></a></li>
+                    <li><a href="/screening">Profile <span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                   
+                    <li><a href="/admin/logout">Logout</a></li>
+
+                   <%};%>
+                    
+                    
+                    
+                   
+                  </ul>  
+               </div>
+               
+          </div>
+    
+     </nav>
+     <div class="container">
+         <% if(error && error.length>0){ %>
+         <div class="alert alert-danger" role="alert">
+              <%=error%>
+         </div>
+         <% } %>
+
+         <% if(success && success.length>0){ %>
+         <div class="alert alert-success" role="alert">
+                   <%=success%>
+              </div>
+         <%}%>
+   
+               
+               <div class="login-form">
+                   <form method="POST" action="/admin/signup">
+                       <h2 class="text-center">Sign Up</h2>       
+                       <div class="form-group">
+                           <input  type="text" class="form-control" placeholder="Username" name="username" required="required">
+                       </div>
+                       <div class="form-group">
+                           <input  type="password" class="form-control" placeholder="Password" name="password"required="required">
+                       </div>
+                       <div class="form-group">
+                           <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                       </div>
+                        <p class="text-center"><a href="/admin/login">Already have an Account!</a></p>  
+                         <p class="text-center"><a href="/index">Go Back</a></p>  
+                   </form>
+                   
+               </div>
+             </div>
+               
+               
+<%include ../footer%>
